@@ -29,9 +29,25 @@ Then("ve un mensaje de confirmación de registro", () => {
   }).should("exist");
 });
 
+// Second scenario
 Given("el usuario navega a la página de login", () => {
   cy.visit("/login");
 });
+
+When("completa el formulario de login con credenciales no válidas", () => {
+  cy.get('input[name="email"]').type(user.email);
+  cy.get('input[name="password"]').type(user.password + ".");
+});
+
+When("envía el formulario de login invalido", () => {
+  cy.get("form").submit();
+});
+
+Then("ve un mensaje de error", () => {
+  cy.contains(/error: no ha proporcionado las credenciales válidas/i, { timeout: 5000 }).should("exist");
+});
+
+// Third scenario
 
 When("completa el formulario de login con credenciales válidas", () => {
   cy.get('input[name="email"]').type(user.email);
@@ -45,3 +61,4 @@ When("envía el formulario de login", () => {
 Then("ve un mensaje de bienvenida", () => {
   cy.contains(/bienvenido|login correcto/i, { timeout: 5000 }).should("exist");
 });
+

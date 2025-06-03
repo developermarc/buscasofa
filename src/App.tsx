@@ -1,10 +1,7 @@
-import './App.css'
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import React from 'react'
-import { fetchFuelPrices } from './apis/fuelApiLib';
+import { useState } from 'react';
 import { FuelApi } from './apis/FuelApi';
+import { effect } from "@preact/signals-react";
 
 
 import Header from './components/Header';
@@ -18,6 +15,8 @@ import Login from './components/Login';
 import Footer from './components/Footer';
 import { NotFound } from './NotFound';
 import { FuelApiResponse, GasStationData } from './types';
+import { errorFuelApi, fuelApiData, isLoadingFuelApi } from './store';
+import FuelApiHandler from './components/FuelApiHandler';
 
 // Componente principal de la aplicación
 // Este componente es el punto de entrada de la aplicación y se encarga de gestionar las rutas y el estado global de la aplicación.
@@ -28,50 +27,49 @@ import { FuelApiResponse, GasStationData } from './types';
 // El componente Header se encarga de mostrar la barra de navegación y el estado de autenticación del usuario.
 // El componente Routes se encarga de definir las diferentes rutas de la aplicación y los componentes que se renderizan en cada ruta.
 // El componente BrowserRouter se encarga de gestionar la navegación entre las diferentes rutas de la aplicación.
+
+effect(() => {
+  const fetchData = async () => {
+    isLoadingFuelApi.value = true
+    try {
+      const res = await FuelApi.getInstance().getFuelPrices()
+      const resData = await res as FuelApiResponse | undefined;
+      if (!resData) {
+        errorFuelApi.value = "Ha habido un error al cargar la informacion de las EE.SS"
+        return
+      }
+      fuelApiData.value = resData.ListaEESSPrecio
+    }
+    finally {
+      isLoadingFuelApi.value = false
+    }
+
+  }
+
+  fetchData()
+})
 function App() {
-
-  const [stations, setStations] = useState<GasStationData[]>([]);
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);   // Inicialmente cargando ...
-  const [error, setError] = useState(null);
-
-
-
- useEffect(() => {
-    FuelApi.getInstance().getFuelPrices()
-      .then((data: FuelApiResponse) => {
-        setStations(data.ListaEESSPrecio);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []); 
-
   return (
     <BrowserRouter>
-      <Header user={user} />
-      {
-        loading && <div className="loading">Cargando...</div>
-      }
-      {
-        error && <div className="error">Error: {error}</div>
-      }
-      {!loading && !error && (
-        <Routes>
-          <Route path="/registro" element={<Register />} />
-          <Route path="/login" element={<Login onLogin={setUser} />} />
-          <Route path="/about" element={<About />} />
+      <div className='flex flex-col min-h-screen'>
+        <Header />
+        <div className='flex-grow'>
+          <Routes>
+            <Route path="/registro" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
 
-          <Route path="/" element={<Home stations={stations} />} />
-          <Route path="/mapa" element={<FuelMap stations={stations} />} />
-          <Route path="/lista" element={<FuelTable stations={stations} />} />
-          <Route path="/station/:id" element={<StationDetail stations={stations} user={user} />} />
-          <Route path="*" element={<NotFound />} /> {/* Pagina no encontrada */}
-        </Routes>
-      )}
-      <Footer />
+            <Route element={<FuelApiHandler />}>
+              <Route path="/" element={<Home stations={fuelApiData.value} />} />
+              <Route path="/mapa" element={<FuelMap stations={fuelApiData.value} />} />
+              <Route path="/lista" element={<FuelTable stations={fuelApiData.value} />} />
+              <Route path="/station/:id" element={<StationDetail stations={fuelApiData.value} />} />
+            </Route>
+            <Route path="*" element={<NotFound />} /> {/* Pagina no encontrada */}
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }
