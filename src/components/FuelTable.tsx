@@ -83,7 +83,7 @@ const FuelTable = ({ stations }) => {
 
 
   return (
-    <div>
+    <div className='container mx-auto'>
       <h2>Precios de combustibles en gasolineras españolas</h2>
       <FuelFilters
         provinces={provinces}
