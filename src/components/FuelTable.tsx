@@ -21,11 +21,11 @@ const FuelTable = ({ stations }) => {
 
 
   // Provincias y ciudades únicas
-  const provinces = useMemo(
-    () => Array.from(new Set(stations.map(s => s.Provincia))).sort(),
+  const provinces : string[] = useMemo(
+    () => Array.from(new Set(stations.map(s => s.Provincia))).sort() as string[],
     [stations]
   );
-  const cities = useMemo(
+  const cities: string[] = useMemo(
     () =>
       Array.from(
         new Set(
@@ -33,7 +33,7 @@ const FuelTable = ({ stations }) => {
             .filter(s => !selectedProvince || s.Provincia === selectedProvince)
             .map(s => s.Municipio)
         )
-      ).sort(),
+      ).sort() as string[],
     [stations, selectedProvince]
   );
 
