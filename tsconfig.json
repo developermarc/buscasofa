@@ -1,8 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@assets/*": ["./src/assets/*"],
+      
+    },
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2020",
+    "jsx": "react",
+    "strictNullChecks": true,
+    "checkJs": true
   },
-  "include": ["**/*.ts"]
+  "exclude": ["node_modules", "**/node_modules/*"],
 }

@@ -16,17 +16,17 @@ function Header({ user }) {
     };
 
     return (
-        <header>
-            <nav>
-                <Link to="/" style={{ marginRight: '1rem' }}>
-                    <img src={logo} alt="Logo" style={{ height: '3em' }} />
+        <header className='bg-dark-blue text-primary-blue p-1 m-1'>
+            <nav className='flex items-end font-bold decoration-none mr-1 text-light-blue p-5 gap-2'>
+                <Link to="/" className='mr-1'>
+                    <img src={logo} alt="Logo" className='h-[3rem]' />
                 </Link>
                 
                 <Link className='buscador' to="/lista" style={{ marginRight: '1rem' }}>Buscador</Link>
                 <Link className='mapa' to="/mapa" style={{ marginRight: '1rem' }}>Mapa</Link>
                 <Link className='about' to="/about">Acerca de nosotros</Link>
                 
-                <span style={{ marginLeft: 'auto', marginRight: '1rem', float: 'right' }}>
+                <span className="ml-auto mr-1 self-start">
                     {(!user) &&
                         <>
                             <Link className='login' to="/login" style={{ marginRight: '1rem' }}>Login</Link>

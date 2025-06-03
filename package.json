@@ -16,11 +16,13 @@
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@tailwindcss/vite": "^4.1.8",
     "leaflet": "^1.9.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.6.0",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",

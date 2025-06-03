@@ -2,6 +2,7 @@ import './App.css'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import React from 'react'
 import { fetchFuelPrices } from './apis/fuelApiLib';
 import { FuelApi } from './apis/FuelApi';
 
@@ -16,6 +17,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import { NotFound } from './NotFound';
+import { FuelApiResponse, GasStationData } from './types';
 
 // Componente principal de la aplicación
 // Este componente es el punto de entrada de la aplicación y se encarga de gestionar las rutas y el estado global de la aplicación.
@@ -28,28 +30,16 @@ import { NotFound } from './NotFound';
 // El componente BrowserRouter se encarga de gestionar la navegación entre las diferentes rutas de la aplicación.
 function App() {
 
-  const [stations, setStations] = useState([]);
+  const [stations, setStations] = useState<GasStationData[]>([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);   // Inicialmente cargando ...
   const [error, setError] = useState(null);
 
-    useEffect(() => {
-      fetchFuelPrices()
-        .then(data => {
-          console.log(data);
-          setStations(data.ListaEESSPrecio);
-          setLoading(false);
-        })
-        .catch(err => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }, []);
 
-/*   useEffect(() => {
+
+ useEffect(() => {
     FuelApi.getInstance().getFuelPrices()
-      .then(data => {
-        console.log(data);
+      .then((data: FuelApiResponse) => {
         setStations(data.ListaEESSPrecio);
         setLoading(false);
       })
@@ -57,7 +47,7 @@ function App() {
         setError(err.message);
         setLoading(false);
       });
-  }, []); */
+  }, []); 
 
   return (
     <BrowserRouter>
