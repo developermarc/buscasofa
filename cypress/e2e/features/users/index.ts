@@ -44,7 +44,7 @@ When("envía el formulario de login invalido", () => {
 });
 
 Then("ve un mensaje de error", () => {
-  cy.contains(/bienvenido|login correcto/i, { timeout: 5000 }).should("exist");
+  cy.contains(/error: no ha proporcionado las credenciales válidas/i, { timeout: 5000 }).should("exist");
 });
 
 // Third scenario
