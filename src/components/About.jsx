@@ -7,7 +7,7 @@ const About = () => {
     <div className="about-container">
         <h1>Quienes somos</h1>
         <div id="info">
-            Somos el equipo nº 23
+            Somos el equipo nº 10
         </div>
     </div>
 
