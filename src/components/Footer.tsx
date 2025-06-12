@@ -1,14 +1,18 @@
-import React from 'react'
 
 const Footer = () => {
+  const teamMembers = ["Tomás Llorenç Guarino Sabater", "Marc Rofes Romero", "Aitor Parra Fernández"]
   return (
-    <footer>
-        <h2>Miembros del equipo:</h2>
-        <ul>
-            <li>Tomás Llorenç Guarino Sabater</li>
-            <li>Marc Rofes Romero</li>
-            <li>Aitor Parra Fernández</li>
-        </ul>
+    <footer className='flex w-full justify-center gap-5 pb-6 text-sm mt-5'>
+      <span>&copy;</span>
+      <h2>Miembros del equipo:</h2>
+      <ul className='flex gap-2'>
+        {teamMembers.map((member, index) =>
+          [
+            index > 0 && ",",
+            <li key={member}>{member}{}</li>
+          ]
+        )}
+      </ul>
     </footer>
   )
 }
