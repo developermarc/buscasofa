@@ -7,6 +7,7 @@ describe('Footer', () => {
     cy.get('footer').should('contain', 'Tomás Llorenç Guarino Sabater');
     cy.get('footer').should('contain', 'Marc Rofes Romero');
     cy.get('footer').should('contain', 'Aitor Parra Fernández');
+    cy.get('footer').should('contain', 'Patrick Albo Sureda');
   });
 });
 
