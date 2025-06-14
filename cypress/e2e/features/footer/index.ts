@@ -9,6 +9,7 @@ Then("debería ver los nombres de los integrantes en el footer", () => {
     "Marc Rofes Romero",
     "Tomás Llorenç Guarino Sabater",
     "Aitor Parra Fernández",
+    "Patrick Albó Sureda"
   ];
   cy.get("footer ul > li").then((members) => {
     const foundedNames = Array.from(
