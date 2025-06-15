@@ -52,7 +52,7 @@ const About = () => {
 
     <div className="flex flex-wrap justify-center gap-6">
         {teamMembers.map((member, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg p-4 w-60">
+          <div key={index} className="card bg-white shadow-md rounded-lg p-4 w-60">
             <img
               src={member.img}
               alt={member.name}
