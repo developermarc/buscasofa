@@ -5,30 +5,30 @@ const teamMembers = [
   {
     name: 'Marc Rofes Romero',
     unir: 'https://campusonline.unir.net/user/view.php?id=77930&course=10953',
-    linkedin: 'https://www.linkedin.com/in/marcrofes', // cambia esto si no es real
+    linkedin: '#',
     img: '/team/marc.jpg',
   },
   {
     name: 'Tomás Llorenç Guarino Sabaté',
     unir: 'https://campusonline.unir.net/user/view.php?id=36336&course=10953',
-    linkedin: 'https://www.linkedin.com/in/tomasguarino',
+    linkedin: '#',
     img: '/team/tomas.jpg',
   },
   {
     name: 'Aitor Parra Fernández',
     unir: 'https://campusonline.unir.net/user/view.php?id=33768&course=10953',
-    linkedin: 'https://www.linkedin.com/in/aitorparra',
+    linkedin: '#',
     img: '/team/aitor.jpg',
   },
   {
     name: 'Patrick Albó Sureda',
     unir: 'https://campusonline.unir.net/user/view.php?id=34041&course=10953',
-    linkedin: 'https://www.linkedin.com/in/patrickalbo',
+    linkedin: '#',
     img: '/team/patrick.jpg',
   },
   {
     name: 'Luis Pedraza Gomara',
-    unir: '#',
+    unir: 'https://ecuador.unir.net/ingenieria/carrera-informatica/',
     linkedin: '#',
     img: '/team/luis.jpg',
     collaborator: true,
