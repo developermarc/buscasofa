@@ -25,7 +25,7 @@ function Header() {
         href: "/mapa"
     },
     {
-        name: "Acerca de nosotros",
+        name: "Quienes somos",
         className: "about",
         href: "/about"
     },
