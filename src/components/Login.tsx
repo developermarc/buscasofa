@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Form.css'
-import { userName } from '@/store';
+import { userStore } from '@/store';
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -20,7 +20,7 @@ function Login() {
     if (res.ok) {
       setMsg('¡Bienvenido, ' + data.username + '!');
       localStorage.setItem('token', data.token);
-      userName.value = data.username;
+      userStore.value = { username: data.username, role: data.role };
     } else {
       setMsg(data.message);
     }

@@ -3,7 +3,7 @@ import Comments from './Comments';
 
 import './StationDetail.css'
 import './Form.css'
-import { userName } from '@/store';
+import { userStore } from '@/store';
 
 
 function StationDetail({ stations }) {
@@ -29,7 +29,7 @@ function StationDetail({ stations }) {
       <Link to={gobackLink}> &lt;&lt; Volver
       </Link>
 
-      <Comments stationId={station.IDEESS} user={userName.value} />
+      <Comments stationId={station.IDEESS} user={userStore.value?.username} />
     </div>
   );
 }

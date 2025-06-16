@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 import './Header.css'
-import { userName } from '@/store';
+import { userStore } from '@/store';
 
 function Header() {
     const handleLogout = () => {
         // Lógica de cierre de sesión
+        userStore.value = undefined
         console.log('Cerrar sesión');
     };
     const handleLogin = () => {
@@ -46,15 +47,15 @@ function Header() {
                     ))}
 
                     <span className="ml-auto mr-1 self-start">
-                        {(!userName.value) &&
+                        {(!userStore.value?.username) &&
                             <>
                                 <Link className='login' to="/login" style={{ marginRight: '1rem' }}>Login</Link>
                                 <Link className='registro' to="/registro">Registro</Link>
                             </>
                         }
-                        {userName.value &&
+                        {userStore.value?.username &&
                             <>
-                                <span style={{ marginRight: '1rem' }}>Bienvenido, <Link to="/perfil">{userName.value}</Link></span>
+                                <span style={{ marginRight: '1rem' }}>Bienvenido, <Link to="/perfil">{userStore.value.username}</Link></span>
                                 <button onClick={handleLogout}>Cerrar sesión</button>
                             </>
                         }
