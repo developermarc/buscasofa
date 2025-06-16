@@ -51,8 +51,8 @@ const FuelTable = ({ stations }) => {
 
   // Ordenación
   const sortedStations = useMemo(() => {
-    if (!selectedFuel) return filteredStations;
-    /*return [...filteredStations].sort((a, b) => {
+    /*if (!selectedFuel) return filteredStations;
+      return [...filteredStations].sort((a, b) => {
       const aVal = parseFloat((a[sortField] || '0').replace(',', '.')) || 0;
       const bVal = parseFloat((b[sortField] || '0').replace(',', '.')) || 0;
       return sortOrder === 'asc' ? aVal - bVal : bVal - aVal;
